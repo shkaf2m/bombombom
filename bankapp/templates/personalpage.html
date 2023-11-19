@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <h1>Личный кабинет пользователя {{user.username}}</h1>
+    <div>
+        <label>Имя: {{user.first_name}}</label>
+    </div>
+    <div>
+        <label>Фамилия: {{user.last_name}}</label>
+    </div>
+    <div>
+        <label>Деньги: {{user.money}} рублей</label>
+    </div>
+    <div>
+        <label>Номер счёта: {{user.account_number}}</labeL>
+    </div>
+    <div>
+        <a href="{% url 'userchange' %}">Изменить данные</a>
+    </div>
+    <div>
+        <p>Хотети перевести деньги другому человеку?</p>
+        <a href="{% url 'sendmoneypage' %}">Сделать перевод денежных средств</a>
+    </div>
+    {% if money_orders %}
+    <div>
+            <p>История переводов:</p>
+            {% for order in money_orders %}
+                <p>Со счёта {{order.sender_number}} на счёт {{order.recipient_number}} было переведено {{order.money_sum}} рублей.</p>
+            {% endfor %}
+    </div>
+    {% endif %}
+    {% else %}
+    <ul class = "menu">
+        <li><a href = "{% url 'signup' %}">Регистрация</a></li>
+        <li><a href = "{% url 'signin' %}">Вход</a></li>
+    </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Физтех-Банк</title>
+    </head>
+    <body>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'index.css' %}">
+        <div id="wrap">
+            <header>
+                <a href="{% url 'homepage' %}"><img class="logo-image" src="{% static 'banklogo.jpg' %}"></a>
+                {% if request.user.is_authenticated %}
+                <ul class = "menu-authenticated">
+                    <li><a href = "{% url 'personal' %}">{{ user.username }}</a></li>
+                    <li><a href = "{% url 'logout' %}">Выйти</a></li>
+                </ul>
+                {% else %}
+                <ul class = "menu">
+                    <li><a href = "{% url 'signup' %}">Регистрация</a></li>
+                    <li><a href = "{% url 'signin' %}">Вход</a></li>
+                </ul>
+                {% endif %}
+            </header>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

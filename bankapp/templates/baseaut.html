@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Физтех-Банк</title>
+    </head>
+    <body>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'index.css' %}">
+        <div id="wrap">
+            <header>
+                <a href="{% url 'homepage' %}"><img class="logo-image" src="{% static 'banklogo.jpg' %}"></a>
+            </header>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

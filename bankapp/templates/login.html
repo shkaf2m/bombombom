@@ -1,0 +1,24 @@
+{% extends "baseaut.html" %}
+
+{% block content %}
+<div class="container">
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        <div class = "login-form-field">
+            <span class="span-username"></span>
+            <input type="text" name="username" id="username" placeholder="Username">
+        </div>
+        <div class = "login-form-field">
+            <span class="span-password"></span>
+            <input type="password" name="password" id="pwd" placeholder="Password">
+        </div>
+        <!-- {{form.errors}} -->
+        {% if form.errors %}
+            {% for error in form.non_field_errors %}
+                <h1>{{ error|escape }}</h1>
+            {% endfor %}
+        {% endif %}
+        <button type="submit">Login</button>
+    </form>
+</div>
+{% endblock %}
